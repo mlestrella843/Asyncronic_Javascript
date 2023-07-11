@@ -1,0 +1,23 @@
+
+function obtenerUsuarios(){
+    return new Promise(function(resolve, reject){
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+        xhr.onload = function(){
+            if(xhr.status === 200){
+                resolve(JSON.parse(xhr.responseText));
+            } else{
+                reject(xhr.statusText);
+            }
+        }
+        xhr.send();
+    });
+}
+
+obtenerUsuarios()
+.then(function(usuarios){
+    console.log(usuarios);
+})
+.catch(function(error){
+    console.log(error);
+});
