@@ -10,3 +10,4 @@ async function obtenerDatos(){
 
 obtenerDatos();
 console.log("El codigo sigue");
+
