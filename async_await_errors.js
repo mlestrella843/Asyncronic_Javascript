@@ -25,22 +25,39 @@
 //         console.log(resultado);
 //     }
 // });
+//Manejo de errores con PROMISES
+// function sumarNumeros(a,b){
+//     return new Promise(function(resolve, reject){
+//         setTimeout(function(){
+//             if(typeof a != 'number' || typeof b != 'number'){
+//                 reject(new Error("Ambos argumentos deben ser numeros"));
+//             }else{
+//                 resolve(a+b);
+//             }
+//         }, 2000);
+//       })       
+//     }
+//     sumarNumeros(1,5)
+//     .then(function(resultado){
+//         console.log(resultado);
+//     }).catch(function(error){
+//         console.log(error);
+//     })
 
-function sumarNumeros(a,b){
-    return new Promise(function(resolve, reject){
-        setTimeout(function(){
-            if(typeof a != 'number' || typeof b != 'number'){
-                reject(new Error("Ambos argumentos deben ser numeros"));
-            }else{
-                resolve(a+b);
+    //Manejo de errores con ASYNC_AWAIT
+    async function sumarNumeros(a,b){
+            if(typeof a != 'number' || typeof b!= 'number' ){
+                throw new Error('Alguno de los argumentos no es un numero');
             }
-        }, 2000);
-      })       
-    }
-    sumarNumeros(1,2)
-    .then(function(resultado){
-        console.log(resultado);
-    }).catch(function(error){
-        console.log(error);
-    })
+            return a + b;
+        }
 
+        async function manejoErrores(){
+            try{
+                let resultado = await sumarNumeros( 2, 4);
+                console.log(resultado);
+            }catch(error){
+                console.error(error.message);
+            }
+        }
+        manejoErrores();
